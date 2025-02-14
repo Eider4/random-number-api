@@ -23,6 +23,6 @@ app.get("/random/:numMAx", (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto http://localhost:${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Servidor corriendo en el puerto http://3.142.131.143:${PORT}`);
 });
