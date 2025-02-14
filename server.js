@@ -6,9 +6,13 @@ app.get("/", (req, res) => {
   res.send("Hola desde el servidor!");
 });
 // Ruta para devolver un número aleatorio
-app.get("/random", (req, res) => {
+app.get("/random/:numMAx", (req, res) => {
   try {
-    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    const { numMAx } = req.params;
+    if (!numMAx) {
+      return res.status(400).json({ error: "Falta el parámetro numMAx" });
+    }
+    const randomNumber = Math.floor(Math.random() * numMAx) + 1;
     res.json({ number: randomNumber, message: "Random number generated" });
   } catch (error) {
     res.status(500).json({ error: "Error al generar el número aleatorio" });
@@ -16,5 +20,5 @@ app.get("/random", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${PORT}`);
+  console.log(`Servidor corriendo en el puerto http://localhost:${PORT}`);
 });
